@@ -1,12 +1,13 @@
 //思路1 动态规划
 class Solution {
     public int maxSubArray(int[] nums) {
-        int pre = 0, maxAns = nums[0];
+        int cSum=0;
+        int maxSum=nums[0];
         for (int num : nums) {
-            pre = Math.max(pre + num, num);
-            maxAns = Math.max(maxAns, pre);
+            cSum=Math.max(num,cSum+num);
+            maxSum=Math.max(cSum,maxSum);
         }
-        return maxAns;
+        return maxSum;
     }
 }
 //思路2 贪心
