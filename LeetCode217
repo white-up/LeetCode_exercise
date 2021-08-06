@@ -1,0 +1,35 @@
+/*
+存在重复元素
+给定一个整数数组，判断是否存在重复元素。
+如果存在一值在数组中出现至少两次，函数返回 true 。如果数组中每个元素都不相同，则返回 false 
+*/
+//思路1 使用set容器不存储相同元素的特性:利用set返回值更快判断是否有重复
+class Solution {
+    public boolean containsDuplicate(int[] nums) {
+        Set<Integer> set = new HashSet<Integer>();
+        for (int num : nums) {
+            if (!set.add(num)) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
+//思路2 先排序在判断知否有重复元素
+class Solution {
+    public boolean containsDuplicate(int[] nums) {
+        Arrays.sort(nums);
+        for (int i = 0; i < nums.length - 1; i++) {
+            if (nums[i] == nums[i + 1]) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
+//思路3 使用流
+class Solution {
+    public boolean containsDuplicate(int[] nums) {
+        return IntStream.of(nums).distinct().count() != nums.length;
+    }
+}
